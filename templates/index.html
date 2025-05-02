@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>多平台影音下載器 Web</title>
+    <style>
+        body { font-family: Microsoft JhengHei; margin: 30px; }
+        textarea { width: 100%; height: 300px; }
+        a.download-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        a.download-link:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎉 多平台影音下載器 Web</h1>
+    <form method="post">
+        <label>影片網址：</label><br>
+        <input type="text" name="url" size="60"><br><br>
+        <label>格式選擇：</label><br>
+        <select name="format">
+            {% for fmt in formats %}
+            <option value="{{fmt}}">{{fmt}}</option>
+            {% endfor %}
+        </select><br><br>
+        <button type="submit">開始下載</button>
+    </form>
+    <h3>下載紀錄：</h3>
+    <textarea readonly>{{ log }}</textarea>
+
+    <!-- ✅ 加入下載按鈕 -->
+    {% if download_link %}
+        <p><a class="download-link" href="{{ download_link }}">✅ 點我下載檔案</a></p>
+    {% endif %}
+</body>
+</html>
